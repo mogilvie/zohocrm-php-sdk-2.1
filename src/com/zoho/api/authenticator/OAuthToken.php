@@ -305,7 +305,7 @@ class OAuthToken implements Token
         {
             $this->processResponse($response);
 
-            if($this->id == null)
+            if(null == $this->id)
             {
                 $this->generateId();
             }
@@ -346,8 +346,10 @@ class OAuthToken implements Token
         try
         {
             $this->processResponse($response);
-
-            $this->generateId();
+		
+	    if (null == $this->id){
+            	$this->generateId();
+	    }
 
             $store->saveToken($user, $this);
 
